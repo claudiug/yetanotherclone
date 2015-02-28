@@ -1,0 +1,13 @@
+<%= @jobs.count %>
+<% @jobs.each do |c| %>
+    <div>
+      <%= link_to c.category.name, category_jobs_path(c.category) %>
+      <br>
+      <strong>
+        <%= c.category.name %>
+      </strong>
+      <article>
+        <%= c.title %>
+      </article>
+    </div>
+<% end %>

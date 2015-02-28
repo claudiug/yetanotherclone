@@ -1,0 +1,14 @@
+<%= @job.inspect %>
+<%= form_tag charges_path do %>
+    <%= hidden_field_tag :job, @job.id %>
+    <article>
+      <label class="amount">
+        <span>Amount: $<%=@job.total_price%>.00</span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Job price"
+            data-amount="<%= @job.price_in_cents %>"></script>
+<% end %>

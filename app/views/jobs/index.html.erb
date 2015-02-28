@@ -1,0 +1,6 @@
+<%= @jobs.count %>
+<% @jobs.each do |c| %>
+  <%= c.title %>
+    <%= link_to c.title, job_path(c) %>
+    <%= c.total_price %>
+<% end %>

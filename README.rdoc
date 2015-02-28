@@ -1,0 +1,31 @@
+models
+ category
+ - name
+ jobs
+ - job title
+ - category_id
+ - location
+ - job description
+ - contact
+ - company_name
+ - logo
+ - url
+ - email
+ - highlight
+ - price, default: 100
+ - valid_time created_at + 30.days
+ - total_price price + hightlight
+- send email with jobs posting and recipe(pdf)
+- send email when jobs will be deleted(-1) day
+
+ ------------------------
+ /jobs -> abs all jobs
+ /category/:id/jobs -> all jobs in that category
+ /default -> front page
+ /info -> about
+       -> contact
+       -> cities
+       -> info??
+       -> price
+ *seo links
+

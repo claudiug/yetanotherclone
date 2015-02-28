@@ -1,0 +1,43 @@
+<h1>Jobs#new</h1>
+<p>Find me in app/views/jobs/new.html.erb</p>
+<%= form_for @job do |f| %>
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :company_name %>
+      <%= f.text_field :company_name %>
+    </div>
+    <div>
+      <% Category.all.each do |c| %>
+      <div>
+        <%= f.radio_button(:category_id, c.id) %>
+        <%= f.label :category_id, c.name %>
+      </div>
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+    </div>
+    <div>
+      <%= f.label :contact %>
+      <%= f.text_area :contact %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+    <div class="actions">
+      <%= f.label :highlight %>
+      <%= f.check_box :highlight %>
+    </div>
+    <div>
+      <%= f.submit "create a new job" %>
+    </div>
+<% end %>
