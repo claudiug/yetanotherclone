@@ -1,6 +1,8 @@
 <div>
   <%= @job.inspect %>
 </div>
+<%= link_to 'Pay', new_charge_path(job_id: @job.id) %>
+
 <% unless @job.is_active %>
 
     <%= link_to 'Change it',edit_job_path(@job) %> or

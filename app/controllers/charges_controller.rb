@@ -19,9 +19,13 @@ class ChargesController < ApplicationController
     )
       @job.is_active = true
       @job.save
-      SendEmailJob.set(wait: 20.seconds).perform_later(@job)
+       UserInvoice.recipe_email(@job).deliver_now
+      #SendEmailJob.set(wait: 10.seconds).perform_later(@job)
   rescue Stripe::CardError => e
+    @job = Job.find(@job.id)
+    @job.is_active=false
+    @job.save
     flash[:error] = e.message
-    redirect_to @job
+    redirect_to edit_job_path(@job)
   end
 end

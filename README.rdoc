@@ -28,4 +28,5 @@ models
        -> info??
        -> price
  *seo links
+ add search with elasticsearh
 

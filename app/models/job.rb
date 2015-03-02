@@ -33,6 +33,9 @@ class Job < ActiveRecord::Base
             length: {maximum: 100},
             format: {with: EMAIL_FORMAT}
 
+  scope :limit_jobs_on, -> (how) {where(is_active: true).limit(how)}
+  scope :first_jobs, -> {order('created_at ASC')}
+
   before_save do
     self.email = email.downcase
     set_total_price
@@ -48,5 +51,9 @@ class Job < ActiveRecord::Base
 
   def price_in_cents
     total_price * 100
+  end
+
+  def to_param
+    "#{id} #{title}".parameterize
   end
 end

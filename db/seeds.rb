@@ -24,7 +24,7 @@ category.each do |category|
 end
 
 Category.all.each do |category|
-  10.times do |n|
+  40.times do |n|
     Job.create!(
            title: "title_#{n}",
            description: "description_#{n}",
@@ -32,6 +32,7 @@ Category.all.each do |category|
            email: "email_#{n}_#{rand(10000)}@example.net",
            contact: "Send me an email here email_#{n}@example.net",
            url: "www.google.com/#{n}",
+           is_active: true,
            company_name: "foo_#{n}_bar",
            category: category
     )

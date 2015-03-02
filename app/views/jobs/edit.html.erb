@@ -3,13 +3,13 @@
 <%= form_for @job do |f| %>
     <div>
       <% if @job.errors.any? %>
-        <div>
-          <% @job.errors.full_messages.each do |error| %>
-            <p>
-              <%= error %>
-            </p>
-          <% end %>
-        </div>
+          <div>
+            <% @job.errors.full_messages.each do |error| %>
+                <p>
+                  <%= error %>
+                </p>
+            <% end %>
+          </div>
       <% end %>
     </div>
     <div>
@@ -26,10 +26,10 @@
     </div>
     <div>
       <% Category.all.each do |c| %>
-      <div>
-        <%= f.radio_button(:category_id, c.id) %>
-        <%= f.label :category_id, c.name %>
-      </div>
+          <div>
+            <%= f.radio_button(:category_id, c.id) %>
+            <%= f.label :category_id, c.name %>
+          </div>
       <% end %>
     </div>
     <div>

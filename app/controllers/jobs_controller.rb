@@ -23,16 +23,7 @@ class JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
-  end
-
-  def publish
-    @amount = 10000
-    if params[:is_active]
-      @job = Job.find(params[:id])
-      @job.is_active= true
-      @job.save!
-      redirect_to @job
-    end
+    redirect_to show if @job.is_active
   end
 
   def update
@@ -41,6 +32,16 @@ class JobsController < ApplicationController
       redirect_to @job
     else
       render :edit
+    end
+  end
+
+  def search
+    #TODO and elasticsearch
+    if params[:term]
+      @jobs = Job.where("title like ?", "#{params[:term]}")
+    else
+      #TODO add pagination
+      @jobs = Job.all
     end
   end
 

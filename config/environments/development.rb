@@ -36,6 +36,16 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  config.action_mailer.delivery_method = :smtp
+  config.active_job.queue_adapter = :sidekiq
+  config.action_mailer.smtp_settings = {
+      address: 'smtp.mandrillapp.com',
+      port: 587,
+      domain:'it-jobs',
+      user_name: ENV.fetch('MANDRILL_USER'),
+      password: ENV.fetch('MANDRILL_API_KEY'),
+      authentication: 'plain',
+      enable_starttls_auto: true}
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
