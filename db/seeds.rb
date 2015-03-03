@@ -24,11 +24,12 @@ category.each do |category|
 end
 
 Category.all.each do |category|
-  40.times do |n|
+  20.times do |n|
+    sleep 2
     Job.create!(
            title: "title_#{n}",
            description: "description_#{n}",
-           location: "location_#{n}",
+           location: "Greifswalder Strase 212, 10405 Berlin",
            email: "email_#{n}_#{rand(10000)}@example.net",
            contact: "Send me an email here email_#{n}@example.net",
            url: "www.google.com/#{n}",
@@ -42,7 +43,7 @@ end
 Job.create!(
     title: "title_#{rand}",
     description: "description_#{rand}",
-    location: "location_#{rand}",
+    location: "Greifswalder Straße 212, 10405 Berlin",
     email: "email_#{rand}_#{rand(10000)}@example.net",
     contact: "Send me an email here email_#{rand}@example.net",
     url: "www.google.com/#{rand}",

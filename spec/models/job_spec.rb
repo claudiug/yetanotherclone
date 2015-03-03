@@ -18,6 +18,8 @@
 #  updated_at   :datetime         not null
 #  category_id  :integer
 #  is_active    :boolean          default("f")
+#  latitude     :float
+#  longitude    :float
 #
 
 require 'rails_helper'

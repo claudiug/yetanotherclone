@@ -18,6 +18,8 @@
 #  updated_at   :datetime         not null
 #  category_id  :integer
 #  is_active    :boolean          default("f")
+#  latitude     :float
+#  longitude    :float
 #
 
 class Job < ActiveRecord::Base
@@ -35,6 +37,9 @@ class Job < ActiveRecord::Base
 
   scope :limit_jobs_on, -> (how) {where(is_active: true).limit(how)}
   scope :first_jobs, -> {order('created_at ASC')}
+
+  geocoded_by :location
+  after_validation :geocode
 
   before_save do
     self.email = email.downcase
@@ -55,5 +60,9 @@ class Job < ActiveRecord::Base
 
   def to_param
     "#{id} #{title}".parameterize
+  end
+
+  def job_location
+    "#{self.latitude}, #{self.longitude}"
   end
 end
