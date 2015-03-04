@@ -1,6 +1,10 @@
 <%= @jobs.count %>
 <% @jobs.each do |c| %>
-  <%= c.title %>
-    <%= link_to c.title, job_path(c, category_id: params[:category_id]) %>
-    <%= c.total_price %>
+    <div>
+      <%= c.title %>
+      <%= link_to c.title, job_path(c, category_id: params[:category_id]) %>
+    </div>
 <% end %>
+<div>
+  <%= paginate @jobs %>
+</div>

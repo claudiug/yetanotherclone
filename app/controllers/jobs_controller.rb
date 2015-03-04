@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
 
   def index
-    @jobs = Category.find(params[:category_id]).jobs.where(is_active: true)
+    @jobs = Category.find(params[:category_id]).jobs.where(is_active: true).page(params[:page] || 1)
   end
 
   def new
