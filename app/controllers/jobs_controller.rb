@@ -36,11 +36,9 @@ class JobsController < ApplicationController
   end
 
   def search
-    #TODO and elasticsearch
     if params[:term]
-      @jobs = Job.where("title like ?", "#{params[:term]}")
+      @jobs = Job.search(params[:term])
     else
-      #TODO add pagination
       @jobs = Job.all
     end
   end

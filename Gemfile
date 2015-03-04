@@ -20,6 +20,8 @@ gem "refile", require: ["refile/rails", "refile/image_processing"]
 gem 'geocoder'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'sidekiq'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 
 group :development, :test do

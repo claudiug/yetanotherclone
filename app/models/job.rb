@@ -21,8 +21,12 @@
 #  latitude     :float
 #  longitude    :float
 #
+require 'elasticsearch/model'
+
 
 class Job < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   belongs_to :category
   EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :title, presence: true, length: {within: 3..100}
@@ -65,4 +69,25 @@ class Job < ActiveRecord::Base
   def job_location
     "#{self.latitude}, #{self.longitude}"
   end
+
+  def self.search(query)
+    __elasticsearch__.search(
+        {
+            query: {
+                multi_match: {
+                    query: query,
+                    fields: ['title^10', 'description']
+                }
+            }
+        }
+    )
+  end
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :title, analyzer: 'english'
+      indexes :description, analyzer: 'english'
+    end
+  end
 end
+Job.import

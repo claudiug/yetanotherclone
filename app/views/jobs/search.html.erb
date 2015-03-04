@@ -1,3 +1,13 @@
 <%= @jobs.inspect %>
 <%= @jobs.count %>
 <h2>Add listing result here</h2>
+<%= @jobs.results.total %>
+<% @jobs.results.each do |job| %>
+    <ul>
+      <%= job.title %>,
+      <%= job.email %>,
+      <%= job.description %>
+    </ul>
+    <br>
+    <%= link_to job.title, job_path(job.id, category_id: job.category_id) %>
+<% end %>
