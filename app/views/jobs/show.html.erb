@@ -1,16 +1,3 @@
-<style>
-    html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-    }
-
-    #map-canvas {
-        width: 500px;
-        height: 500px;
-    }
-</style>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script>
     function initialize() {
         var myLatlng = new google.maps.LatLng(<%=@job.job_location %>);
@@ -25,7 +12,7 @@
             map: map,
             title: "<%= @job.title %>"
         });
-
+//        TODO escape any kind of bad string. or there are allready escaped
         var infowindow = new google.maps.InfoWindow({
             content: "<%= @job.title %>"
         });
@@ -40,10 +27,32 @@
         });
     }
 
+    function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
+        '&signed_in=true&callback=initialize';
+        document.body.appendChild(script);
+    }
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+    //    google.maps.event.addDomListener(window, 'load', initialize);
+    window.onload = loadScript;
+
 
 </script>
+<style>
+    html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+    }
+
+    #map-canvas {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+
 <div id="map-canvas"></div>
 
 <div>
@@ -59,4 +68,4 @@
     <%= link_to 'Pay', new_charge_path(job_id: @job.id) %>
 <% end %>
 
-<div id="map-canvas"></div>
+<%= link_to 'back to listing', jobs_path(category_id: params[:category_id]) %>

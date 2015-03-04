@@ -1,6 +1,6 @@
 <%= @jobs.count %>
 <% @jobs.each do |c| %>
   <%= c.title %>
-    <%= link_to c.title, job_path(c) %>
+    <%= link_to c.title, job_path(c, category_id: params[:category_id]) %>
     <%= c.total_price %>
 <% end %>

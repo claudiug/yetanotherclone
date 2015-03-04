@@ -27,6 +27,9 @@ models
        -> cities
        -> info??
        -> price
- *seo links
- add search with elasticsearh
-
+ seo links *
+ add search *
+ add ES
+ add stripe *
+ add validations *
+ after pay edit?? how and why
